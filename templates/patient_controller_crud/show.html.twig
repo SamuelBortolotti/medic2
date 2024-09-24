@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Patient{% endblock %}
+
+{% block body %}
+    <h1>Patient</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ patient.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ patient.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ patient.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ patient.age }}</td>
+            </tr>
+            <tr>
+                <th>Genre</th>
+                <td>{{ patient.genre }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ patient.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ patient.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Portable</th>
+                <td>{{ patient.portable }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ patient.email }}</td>
+            </tr>
+            <tr>
+                <th>DateNaissance</th>
+                <td>{{ patient.dateNaissance ? patient.dateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Profession</th>
+                <td>{{ patient.profession }}</td>
+            </tr>
+            <tr>
+                <th>AntecedentMedicaux</th>
+                <td>{{ patient.antecedentMedicaux }}</td>
+            </tr>
+            <tr>
+                <th>NumeroSecu</th>
+                <td>{{ patient.numeroSecu }}</td>
+            </tr>
+            <tr>
+                <th>MedecinTraitant</th>
+                <td>{{ patient.medecinTraitant }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_patient_controller_crud_index') }}">back to list</a>
+
+    <a href="{{ path('app_patient_controller_crud_edit', {'id': patient.id}) }}">edit</a>
+
+    {{ include('patient_controller_crud/_delete_form.html.twig') }}
+{% endblock %}

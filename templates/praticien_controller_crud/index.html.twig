@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Praticien index{% endblock %}
+
+{% block body %}
+    <h1>Praticien index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Telephone</th>
+                <th>Specialite</th>
+                <th>Adresse</th>
+                <th>NumeroCabinet</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for praticien in praticiens %}
+            <tr>
+                <td>{{ praticien.id }}</td>
+                <td>{{ praticien.nom }}</td>
+                <td>{{ praticien.prenom }}</td>
+                <td>{{ praticien.telephone }}</td>
+                <td>{{ praticien.specialite }}</td>
+                <td>{{ praticien.adresse }}</td>
+                <td>{{ praticien.numeroCabinet }}</td>
+                <td>
+                    <a href="{{ path('app_praticien_controller_crud_show', {'id': praticien.id}) }}">show</a>
+                    <a href="{{ path('app_praticien_controller_crud_edit', {'id': praticien.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_praticien_controller_crud_new') }}">Create new</a>
+{% endblock %}

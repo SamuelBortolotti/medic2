@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RendezVous index{% endblock %}
+
+{% block body %}
+    <h1>RendezVous index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Patient_id</th>
+                <th>Adresse</th>
+                <th>Heure</th>
+                <th>Raison</th>
+                <th>Urgence</th>
+                <th>Specificites</th>
+                <th>Praticien_id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rendez_vou in rendez_vouses %}
+            <tr>
+                <td>{{ rendez_vou.patientId }}</td>
+                <td>{{ rendez_vou.Adresse }}</td>
+                <td>{{ rendez_vou.heure ? rendez_vou.heure|date('H:i:s') : '' }}</td>
+                <td>{{ rendez_vou.raison }}</td>
+                <td>{{ rendez_vou.urgence ? 'Yes' : 'No' }}</td>
+                <td>{{ rendez_vou.specificites }}</td>
+                <td>{{ rendez_vou.praticienId }}</td>
+                <td>
+                    <a href="{{ path('app_rendez_vous_controller_crud_show', {'patient_id': rendez_vou.patient_id}) }}">show</a>
+                    <a href="{{ path('app_rendez_vous_controller_crud_edit', {'patient_id': rendez_vou.patient_id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_rendez_vous_controller_crud_new') }}">Create new</a>
+{% endblock %}
